@@ -22,6 +22,7 @@ const emojis = Object.keys(emojiDictionary);
 
 export default function App() {
   const [output, setOutput] = useState();
+  const [error, setError] = useState();
 
   function emojiClickHandler(emoji) {
     setOutput(emojiDictionary[emoji]);
@@ -29,14 +30,16 @@ export default function App() {
   function emojiInputHandler(event) {
     const emoji = event.target.value;
     if (emoji === "") {
-      setOutput(false);
+      setOutput();
+      setError();
       return;
     }
     const outputText = emojiDictionary[emoji];
     if (outputText) {
       setOutput(outputText);
     } else {
-      setOutput("We do not have this emoji in our database.");
+      setOutput();
+      setError("We do not have this emoji in our database.");
     }
   }
   return (
@@ -47,8 +50,9 @@ export default function App() {
         placeholder="Enter Emoji Here"
         onChange={(e) => emojiInputHandler(e)}
       />
-      {!output && <p>Output Will be displayed here</p>}
-      {output && <p>{output}</p>}
+      {!output && !error && <p>Output Will be displayed here</p>}
+      {!output && error && <p className="error">{error}</p>}
+      {output && <p className="output">{output}</p>}
       <p>Emoji's we have</p>
       <ul>
         {emojis.map((emoji, index) => {
