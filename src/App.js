@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Footer from "./components/Footer";
 import "./styles.css";
 
 const emojiDictionary = {
@@ -43,26 +44,29 @@ export default function App() {
     }
   }
   return (
-    <div className="App">
-      <h1>Emoji Dictionary</h1>
-      <input
-        type="text"
-        placeholder="Enter Emoji Here"
-        onChange={(e) => emojiInputHandler(e)}
-      />
-      {!output && !error && <p>Output Will be displayed here</p>}
-      {!output && error && <p className="error">{error}</p>}
-      {output && <p className="output">{output}</p>}
-      <p>Emoji's we have</p>
-      <ul>
-        {emojis.map((emoji, index) => {
-          return (
-            <li key={index} onClick={emojiClickHandler.bind(this, emoji)}>
-              {emoji}
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <>
+      <div className="App">
+        <h1>Emoji Dictionary</h1>
+        <input
+          type="text"
+          placeholder="Enter Emoji Here"
+          onChange={(e) => emojiInputHandler(e)}
+        />
+        {!output && !error && <p>Output Will be displayed here</p>}
+        {!output && error && <p className="error">{error}</p>}
+        {output && <p className="output">{output}</p>}
+        <p>Emoji's we have</p>
+        <ul>
+          {emojis.map((emoji, index) => {
+            return (
+              <li key={index} onClick={emojiClickHandler.bind(this, emoji)}>
+                {emoji}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+      <Footer />
+    </>
   );
 }
