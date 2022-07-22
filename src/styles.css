@@ -70,10 +70,16 @@ ul {
 ul li {
   font-size: 4rem;
   cursor: pointer;
+  border: 2px solid transparent;
+  /* opacity: 0.9; */
 }
 a,
 a:link,
 a:visited {
   color: inherit;
   text-decoration: none;
+}
+ul li:hover {
+  opacity: 1;
+  text-shadow: 1px 1px 10px #fff, -1px -1px 5px #fff;
 }
